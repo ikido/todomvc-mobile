@@ -1,21 +1,27 @@
-TodoMVC with evernote-style server sync and phonegap integaration
-=========
+# TodoMVC mobile app
 
-Install
---------
+This is a prototype of classic TodoMVC app with evernote-style server sync and phonegap integaration.
+It runs on backbone.js, Marionette and require.js.
 
-clone this repo:
+## Installation
+
+1) Clone this repo:
+
     git clone git@github.com:ikido/jasper-prototype.git
 
-cd into project dir
+2) Switch into project dir
+
     cd jasper-prototype
     
-install dependensies
+
+3) Install dependensies
+
     bundle install
 
-start middleman
+4) Start middleman
+
     middleman
 
-go to http://localhost:4567 to see it in action
+5) Go to http://localhost:4567 to see it in action
 
-go to http://localhost:4567/jasmine to run jasmine tests
+6) Go to http://localhost:4567/jasmine to run jasmine tests
