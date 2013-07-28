@@ -1,6 +1,9 @@
-define (require) ->
+define ["templates","views/TodoItemView", "models/Todo"], (templates, ItemView, Todo) ->
 
-  describe 'truth', ->
-    it 'should be true', ->
-      #loadFixtures('some stuff')
-      expect(1 == 1).toBeTruthy()
+  describe "ItemView", ->    
+    
+    it "returns the view object", ->
+      @model = new Todo({ title: 'some title' })
+      @view = new ItemView({ model: @model })
+      
+      expect(@view.render()).toEqual @view

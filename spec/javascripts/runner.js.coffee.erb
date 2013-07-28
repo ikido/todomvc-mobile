@@ -24,7 +24,27 @@ require.config
   baseUrl: "/javascripts/"
   urlArgs: "cb=" + Math.random() # fighting browser caching
   paths:
+    underscore: "lib/underscore"
+    backbone: "lib/backbone"
+    marionette: "lib/backbone.marionette"
     jquery: "lib/jquery.min"
+    tpl: "lib/tpl"
+
+  shim:
+    "lib/backbone-localStorage": ["backbone"]
+    underscore:
+      exports: "_"
+
+    backbone:
+      exports: "Backbone"
+      deps: ["jquery", "underscore"]
+
+    marionette:
+      exports: "Backbone.Marionette"
+      deps: ["backbone"]
+
+  deps: ["jquery", "underscore"]
+
 
 require ['jquery'], ($) -> 
   

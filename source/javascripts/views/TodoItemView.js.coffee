@@ -1,6 +1,8 @@
 #global define
 define ["marionette", "templates"], (Marionette, templates) ->
+  
   "use strict"
+  
   Marionette.CompositeView.extend
     tagName: "li"
     template: templates.todoItemView
