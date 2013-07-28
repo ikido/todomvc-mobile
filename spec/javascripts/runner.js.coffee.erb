@@ -20,13 +20,20 @@ execJasmine = undefined
     jasmineEnv.execute()
 )()
 
+require.config
+  baseUrl: "/javascripts/"
+  urlArgs: "cb=" + Math.random() # fighting browser caching
+  paths:
+    jquery: "lib/jquery.min"
 
-specs = []
+require ['jquery'], ($) -> 
+  
+  specs = []
+  
+  <% environment.context_class.instance_eval { include JasmineSpecHelpers } %>
+  <% jasmine_spec_file_urls.each do |f| %>
+  specs.push "<%= f %>"
+  <% end %>
 
-<% environment.context_class.instance_eval { include JasmineSpecHelpers } %>
-<% jasmine_spec_file_urls.each do |f| %>
-specs.push "<%= f %>"
-<% end %>
-
-require specs, -> 
-  execJasmine()
+  require specs, ->
+    execJasmine()
