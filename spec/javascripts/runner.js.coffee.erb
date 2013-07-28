@@ -1,0 +1,32 @@
+# runner script that gets loaded instead of default boot.js
+# to start jasmine within require.js 
+
+# this script gets loaded by spec.js, to allow sprockets parsing of
+# coffeescript and erb
+
+jsApiReporter = undefined
+execJasmine = undefined
+
+(->
+  jasmineEnv = jasmine.getEnv()
+  jsApiReporter = new jasmine.JsApiReporter()
+  htmlReporter = new jasmine.HtmlReporter()
+  jasmineEnv.addReporter jsApiReporter
+  jasmineEnv.addReporter htmlReporter
+  jasmineEnv.specFilter = (spec) ->
+    htmlReporter.specFilter spec
+
+  execJasmine = ->
+    jasmineEnv.execute()
+)()
+
+
+specs = []
+
+<% environment.context_class.instance_eval { include JasmineSpecHelpers } %>
+<% jasmine_spec_file_urls.each do |f| %>
+specs.push "<%= f %>"
+<% end %>
+
+require specs, -> 
+  execJasmine()
