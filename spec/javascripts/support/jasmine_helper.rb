@@ -16,9 +16,8 @@ module JasmineSpecHelpers
   
   def jasmine_spec_file_urls
 
-    # load all spec files in 'spec' subfoler, currently without parsing any support
-    # for organizing the into further subfolders
-    files = Dir.glob(File.join(Jasmine.config.spec_dir, 'spec', '*.js.coffee'))
+    # load all spec files in 'spec' folder and subfolers
+    files = Dir.glob(File.join(Jasmine.config.spec_dir, 'spec', '**', '*.js.coffee'))
     spec_files = files.map {|f| f.gsub(Jasmine.config.spec_dir, '/__spec__').gsub(".coffee", "") }
     
     return spec_files
