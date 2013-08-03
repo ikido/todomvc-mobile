@@ -27,8 +27,17 @@ require.config
 
   deps: ["jquery", "underscore"]
 
-require ["app", "backbone", "routers/index", "controllers/index"], (app, Backbone, Router, Controller) ->
+require ["app", "jquery", "backbone", "routers/index", "controllers/index"], (app, $, Backbone, Router, Controller) ->
   "use strict"
+
+  $.ajaxSetup
+    headers:
+      "X-Requested-With": "XMLHttpRequest"
+      "Access-Control-Allow-Credentials": "true"
+    crossDomain: true
+
   app.start()
   new Router(controller: Controller)
   Backbone.history.start()
+  
+  

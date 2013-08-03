@@ -7,7 +7,7 @@ define ["backbone", "models/Todo", "backbone_offline"], (Backbone, Todo, Offline
   
   Backbone.Collection.extend
     model: Todo
-    url: AppConfig.api_server+'/todo_items.json'
+    url: AppConfig.api_server+'/todo_items'
     
     initialize: ->
       @storage = new Offline.Storage('todos-backbone', this)

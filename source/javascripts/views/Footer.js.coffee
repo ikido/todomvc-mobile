@@ -12,6 +12,7 @@ define ["marionette", "vent", "templates", "views/ActiveCount"], (Marionette, ve
     events:
       "click #clear-completed": "onClearClick"
       "click #full-sync": "onFullSyncClick"
+      "click #incremental-sync": "onIncrementalSyncClick"
 
     initialize: ->
       @bindTo vent, "todoList:filter", @updateFilterSelection, this
@@ -27,4 +28,7 @@ define ["marionette", "vent", "templates", "views/ActiveCount"], (Marionette, ve
       
     onFullSyncClick: ->
       @collection.storage.sync.full()
+      
+    onIncrementalSyncClick: ->
+      @collection.storage.sync.incremental()
 
