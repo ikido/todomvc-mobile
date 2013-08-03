@@ -11,6 +11,7 @@ define ["marionette", "vent", "templates", "views/ActiveCount"], (Marionette, ve
 
     events:
       "click #clear-completed": "onClearClick"
+      "click #full-sync": "onFullSyncClick"
 
     initialize: ->
       @bindTo vent, "todoList:filter", @updateFilterSelection, this
@@ -23,4 +24,7 @@ define ["marionette", "vent", "templates", "views/ActiveCount"], (Marionette, ve
 
     onClearClick: ->
       vent.trigger "todoList:clear:completed"
+      
+    onFullSyncClick: ->
+      @collection.storage.sync.full()
 
