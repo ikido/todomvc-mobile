@@ -7,9 +7,13 @@ require.config
     marionette: "lib/backbone.marionette"
     jquery: "lib/jquery.min"
     tpl: "lib/tpl"
+    'backbone_offline': 'lib/backbone_offline'
 
   shim:
-    "lib/backbone-localStorage": ["backbone"]
+    'backbone_offline':
+      deps: ['underscore', 'backbone']
+      exports: 'Offline'
+
     underscore:
       exports: "_"
 

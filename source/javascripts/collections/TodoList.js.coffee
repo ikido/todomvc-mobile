@@ -1,4 +1,4 @@
-define ["backbone", "models/Todo", "lib/backbone-localStorage"], (Backbone, Todo) ->
+define ["backbone", "models/Todo", "backbone_offline"], (Backbone, Todo, Offline) ->
   
   "use strict"
   
@@ -7,7 +7,11 @@ define ["backbone", "models/Todo", "lib/backbone-localStorage"], (Backbone, Todo
   
   Backbone.Collection.extend
     model: Todo
-    localStorage: new Backbone.LocalStorage("todos-backbone")
+    url: AppConfig.api_server+'/todo_items'
+    
+    initialize: ->
+      @storage = new Offline.Storage('todos-backbone', this)
+          
     getCompleted: ->
       @filter isCompleted
 

@@ -3,6 +3,7 @@ define ["marionette", "vent", "collections/TodoList", "views/Header", "views/Tod
   "use strict"
   app = new marionette.Application()
   todoList = new TodoList()
+  
   app.bindTo todoList, "all", ->
     if todoList.length is 0
       app.main.$el.hide()
@@ -21,7 +22,7 @@ define ["marionette", "vent", "collections/TodoList", "views/Header", "views/Tod
     app.header.show new Header(viewOptions)
     app.main.show new TodoListCompositeView(viewOptions)
     app.footer.show new Footer(viewOptions)
-    todoList.fetch()
+    todoList.fetch({local: true})
 
   vent.on "todoList:filter", (filter) ->
     filter = filter or "all"

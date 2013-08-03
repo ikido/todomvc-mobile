@@ -1,9 +1,8 @@
-define ["backbone", "lib/backbone-localStorage"], (Backbone) ->
+define ["backbone"], (Backbone) ->
   
   "use strict"
   
   Backbone.Model.extend
-    localStorage: new Backbone.LocalStorage("todos-backbone")
     defaults:
       title: ""
       completed: false
@@ -11,6 +10,9 @@ define ["backbone", "lib/backbone-localStorage"], (Backbone) ->
 
     initialize: ->
       @set "created", Date.now()  if @isNew()
+      @on 'change', ->
+        @updated_at = new Date();
+      , @
 
     toggle: ->
       @set "completed", not @get("completed")
