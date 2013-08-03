@@ -16,10 +16,10 @@ do (global = window, _, Backbone) ->
           if _.isUndefined(model.id) then store.findAll(options) else store.find(model, options)
         when 'create' then store.create(model, options)
         when 'update' then store.update(model, options)
-        when 'delete' then store.destroy(model, options)
+        when 'delete' then store.destroy(model, options)      
 
       if resp
-        options.success(model, resp.attributes ? resp, options)
+        options.success(resp.attributes ? resp)
       else
         options.error?('Record not found')
 
@@ -127,7 +127,9 @@ do (global = window, _, Backbone) ->
     findAll: (options = {}) ->
       unless options.local
         if @isEmpty() then @sync.full(options) else @sync.incremental(options)
-      JSON.parse(@getItem("#{@name}-#{id}")) for id in @allIds.values
+      items = []
+      items.push JSON.parse(@getItem("#{@name}-#{id}")) for id in @allIds.values
+      items
 
     s4: ->
       (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
@@ -137,7 +139,7 @@ do (global = window, _, Backbone) ->
     localId2: ((1+ Math.random()) * 0x100000 | 0).toString(16).substring(1)
 
     mid: ->
-       ((new Date).getTime()/1000 | 0).toString(16) + @localId1 + @localId2 + (++@incrementId).toString(16).substring(1)
+       ((new Date).getTime() / 1000 | 0).toString(16) + @localId1 + @localId2 + (++@incrementId).toString(16).substring(1)
 
     guid: ->
       @s4() + @s4() + '-' + @s4() + '-' + @s4() + '-' + @s4() + '-' + @s4() + @s4() + @s4()
