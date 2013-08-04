@@ -4,6 +4,7 @@ This is a prototype of classic TodoMVC app with evernote-style server sync and p
 It runs on backbone.js, Marionette and require.js.
 
 ## Installation
+----
 
 1) Clone this repo:
 
@@ -25,7 +26,20 @@ It runs on backbone.js, Marionette and require.js.
 
 6) Go to http://localhost:4567/jasmine to run jasmine tests
 
+## Config
+----
+
+You can configure settings by editing config.rb file. Be carefull though,
+all variables not prefixed with 'jasper_' will affect middleman's behaviour,
+so make sure you know what you are doing. Here is a list of current config
+variables with their defaults
+
+** Api server url **
+
+    set :jasper_api_server, 'http://jasper-server.dev'
+
 ## Project build
+----
 
 Since we are running automated project build node.js will be required to run r.js command line optimizer. All project build steps are written and documented in /build.rb 
 

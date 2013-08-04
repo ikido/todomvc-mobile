@@ -4,7 +4,7 @@
 
 MIDDLEMAN_BUILD_DIR="middleman_build"
 PHONEGAP_BUILD_DIR="phonegap_build"
-REMOTE_SERVER_URL='http://jasper-server.herokuapp.com'
+REMOTE_SERVER_URL='http://jasper-prototype-server.herokuapp.com'
 LOCAL_SERVER_URL='http://jasper-server.dev'
 
 # ------------- Edit below on your own risk ----------------------
@@ -49,16 +49,9 @@ middleman build
 print_message "Running r.js optimizer"
 r.js -o ./build.js
 
-
 # ----------------------------------------------------------------
-print_message "Copyin and injecting almond.js into index.html"
+print_message "Injecting new application.js into index file"
 
-# copy almond.js
-SOURCE_PATH=$MIDDLEMAN_BUILD_DIR/javascripts/lib/almond.js
-DESTINATION_PATH=$PHONEGAP_BUILD_DIR/javascripts/
-cp $SOURCE_PATH $DESTINATION_PATH
-
-# inject it instead of require.js
 # can't make sed to work with whitespace in reges,
 # so doing processing twice
 SOURCE_REGEX="src=\"javascripts\/lib\/require\.js\""
@@ -81,6 +74,7 @@ echo "$FILE_CONTENTS" | \
 
 # ----------------------------------------------------------------
 print_message "Copying stylesheets and images"
-cp -R $MIDDLEMAN_BUILD_DIR/stylesheets $PHONEGAP_BUILD_DIR/
+mkdir -p $PHONEGAP_BUILD_DIR/stylesheets
+cp -R $MIDDLEMAN_BUILD_DIR/stylesheets/application.css $PHONEGAP_BUILD_DIR/stylesheets
 cp -R $MIDDLEMAN_BUILD_DIR/images $PHONEGAP_BUILD_DIR/
 

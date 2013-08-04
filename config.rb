@@ -1,3 +1,4 @@
+
 ###
 # Compass
 ###
@@ -46,6 +47,8 @@ activate :jasmine
 #     "Helping"
 #   end
 # end
+
+set :jasper_api_server, 'http://jasper-server.dev'
 
 set :css_dir, 'stylesheets'
 
