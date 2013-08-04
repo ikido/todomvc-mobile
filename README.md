@@ -62,4 +62,4 @@ Since we are running automated project build node.js will be required to run r.j
 
     ./build.sh
     
-6) Check project files in ./phonegap-build
+6) Check project files in ./phonegap-build and project archive in phonegap-build.zip

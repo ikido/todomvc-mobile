@@ -78,3 +78,8 @@ mkdir -p $PHONEGAP_BUILD_DIR/stylesheets
 cp -R $MIDDLEMAN_BUILD_DIR/stylesheets/application.css $PHONEGAP_BUILD_DIR/stylesheets
 cp -R $MIDDLEMAN_BUILD_DIR/images $PHONEGAP_BUILD_DIR/
 
+# ----------------------------------------------------------------
+print_message "Recreating build archive"
+rm phonegap_build.zip
+zip -r phonegap_build.zip phonegap_build/
+
