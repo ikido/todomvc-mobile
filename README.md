@@ -11,8 +11,7 @@ It runs on backbone.js, Marionette and require.js.
 
 2) Switch into project dir
 
-    cd jasper-prototype
-    
+    cd jasper-prototype    
 
 3) Install dependensies
 
@@ -22,6 +21,31 @@ It runs on backbone.js, Marionette and require.js.
 
     middleman
 
-5) Go to http://localhost:4567 to see it in action
+5) Go to http://localhost:4567/index_dev.html_ to see it in action
 
 6) Go to http://localhost:4567/jasmine to run jasmine tests
+
+## Project build
+
+Since we are running automated project build node.js will be required to run r.js command line optimizer. All project build steps are written and documented in /build.rb 
+
+1) Get latest XCode from the App store, it's free download
+
+2) Install homebrew
+
+    ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
+    brew doctor
+
+3) Install node.js
+
+    brew install node
+
+4) Switch into project dir
+
+    cd jasper-prototype
+
+5) Run project build script
+
+    ./build.sh
+    
+6) Check project files in ./phonegap-build
